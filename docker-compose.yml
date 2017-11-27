@@ -4,8 +4,6 @@ services:
   guacd:
     build:
       context: ./guacamole-guacd
-    ports:
-      - 4822
     networks:
       - backend
     restart: always
@@ -14,32 +12,29 @@ services:
     build:
       context: ./guacamole-web
     labels:
-      - "traefik.host=vnc"
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:my.hostname.invalid"
-      - "traefik.port=9080"
-      - "traefik.docker.network=traefik_traefik"
-      - "traefik.protocol=http"
-    ports:
-      - 9080
+      traefik.host: "vnc"
+      traefik.enable: "true"
+      traefik.frontend.rule: "Host:my.hostname.invalid"
+      traefik.port: "9080"
+      traefik.docker.network: traefik_traefik
+      traefik.protocol: "http"
     networks:
-      - backend
-      - frontend
       - traefik
+      - backend
     restart: always
+    links:
+      - guacd
     volumes:
-      - ./user-mapping.xml:/config/properties/user-mapping.xml:ro
+      - ./user-mapping.xml:/config/properties/user-mapping.xml
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://my.hostname.invalid:443/"]
-      interval: 10m30s
-      timeout: 10s
+      test: ["CMD", "curl", "-f", "http://localhost:9080/translations/en.json"]
+      interval: 30s
+      timeout: 5s
       retries: 3
 
 networks:
-  backend:
-    driver: bridge
-  frontend:
-    driver: bridge
   traefik:
     external:
       name: traefik_traefik
+  backend:
+    driver: bridge
