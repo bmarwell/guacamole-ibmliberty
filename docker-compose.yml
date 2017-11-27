@@ -27,6 +27,8 @@ services:
       - frontend
       - traefik
     restart: always
+    volumes:
+      ./user-mapping.xml:/config/properties/user-mapping.xml:ro
     healthcheck:
       test: ["CMD", "curl", "-f", "https://my.hostname.invalid:443/"]
       interval: 10m30s
