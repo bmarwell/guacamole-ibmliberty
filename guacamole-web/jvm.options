@@ -1,0 +1,5 @@
+-Xmx128m
+-Xmx512m
+-Xjit
+-Xtune:virtualized
+-Xdisableexplicitgc

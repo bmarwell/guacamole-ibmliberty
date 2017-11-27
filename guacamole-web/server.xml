@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <!--feature>webProfile-7.0</feature-->
+      <feature>servlet-3.1</feature>
+      <feature>websocket-1.1</feature>
+    </featureManager>
+
+    <webApplication contextRoot="/" location="guacamole.war" />
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                host="*"
+                  httpPort="9080"
+                  httpsPort="9443" />
+                  
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="false"/>
+
+    <logging isoDateFormat="true" />
+
+    <webContainer skipMetaInfResourcesProcessing="true"/>
+
+    <applicationMonitor dropinsEnabled="false" updateTrigger="disabled"/>
+    <config updateTrigger="disabled"/>
+
+    <cdi12 enableImplicitBeanArchives="false"/>
+
+</server>
