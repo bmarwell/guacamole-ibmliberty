@@ -4,7 +4,7 @@ This github repository shows how to create guacamole on a liberty profile
 server. The default container uses jetty or tomcat as application server.
 
 As IBM open sources liberty profile on
-[![OpenLiberty.io Favicon][openlibertyiofav] openliberty.io](https://openliberty.io), I found it suitable to create an
+![OpenLiberty.io Favicon][openlibertyiofav][openliberty.io](https://openliberty.io), I found it suitable to create an
 example on how to use guacamole on IBM liberty profile.
 
 ## Setup instructions
@@ -20,7 +20,7 @@ example on how to use guacamole on IBM liberty profile.
 ### Exposing the port to the public internet
    
 The `docker-compose.yml` is pre-configured for use with
-[![Træfik favicon][traefikiofav] træfik](https://traefik.io/).  Just create a local branch and change the
+![Træfik favicon][traefikiofav][træfik](https://traefik.io/).  Just create a local branch and change the
 hostname and URL to a domain which points to your public træfik host.
 
 You may also want to change the name of the external network, which might have
